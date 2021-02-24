@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,9 +36,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // The user just clicked
+
+                float size;
+                float weight;
+
                 System.out.println("Compute IMC");
 
-                mResult.setText("IMC = 27.7");
+                try {
+                    weight = Float.parseFloat(mWeightInput.getText().toString());
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Poid incorrect", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                try {
+                    size = Float.parseFloat(mSizeInput.getText().toString());
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Taille incorrecte", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if ((size < 1.0) || (size > 2.2)) {
+                    Toast.makeText(getApplicationContext(), "IMC non significatif pour cette taille", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if ((weight < 40.0) || (weight > 200.2)) {
+                    Toast.makeText(getApplicationContext(), "IMC non significatif pour ce poid", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                float imc = weight / (size * size);
+
+                mResult.setText("IMC = " + new DecimalFormat("#.##").format(imc));
 
             }
         });

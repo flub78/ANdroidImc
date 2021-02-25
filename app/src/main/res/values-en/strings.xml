@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="poids">Weight :</string>
+    <string name="entrez_votre_poids_en_kg">How much do you weight (in kg)</string>
+    <string name="taille">Size :</string>
+    <string name="entrez_votre_taille_en_m">How tall are you (in m)</string>
+    <string name="calculez_votre_imc">Compute your BMI</string>
+    <string name="raz">Clear</string>
+    <string name="IMC">BMI = %1$.2f</string>
+</resources>

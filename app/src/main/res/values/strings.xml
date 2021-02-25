@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Imc</string>
+    <string name="app_name">IMC</string>
+    <string name="entrez_votre_poids_en_kg">Entrez votre poids en kg</string>
+    <string name="taille">Taille :</string>
+    <string name="entrez_votre_taille_en_m">Entrez votre taille en m</string>
+    <string name="calculez_votre_imc">Calculez votre IMC</string>
+    <string name="raz">RAZ</string>
+    <string name="poids">Poids :</string>
+    <string name="IMC">IMC = %1$.2f</string>
 </resources>

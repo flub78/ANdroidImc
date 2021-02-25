@@ -3,19 +3,12 @@ package flub78.org.imc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.text.DecimalFormat;
-
-import static android.widget.Toast.*;
-import static flub78.org.imc.R.id.custom_toast_container;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,17 +19,28 @@ public class MainActivity extends AppCompatActivity {
     private Button mComputeButton;
     private Button mClearButton;
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        mResult = (TextView) findViewById(R.id.activity_main_result_text);
-        mSizeInput = (EditText) findViewById(R.id.activity_main_size_input);
-        mWeightInput = (EditText) findViewById(R.id.activity_main_weight_input);
+        Log.println(Log.INFO, "MainActivity", "main activity creation");
+        Log.v("MainActivity", "verbose level is blue");
+        Log.d("MainActivity", "debug level is green");
+        Log.i("MainActivity", "info level is white");
+        Log.w("MainActivity", "Warning level is yellow");
+        Log.e("MainActivity", "Error level is red");
+        Log.wtf("MainActivity", "What the f...? level is red");
 
-        mComputeButton = (Button) findViewById(R.id.activity_main_compute_button);
-        mClearButton = (Button) findViewById(R.id.activity_main_clear_button);
+
+        mResult = findViewById(R.id.activity_main_result_text);
+        mSizeInput = findViewById(R.id.activity_main_size_input);
+        mWeightInput = findViewById(R.id.activity_main_weight_input);
+
+        mComputeButton = findViewById(R.id.activity_main_compute_button);
+        mClearButton = findViewById(R.id.activity_main_clear_button);
 
         mComputeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
                 float size;
                 float weight;
 
-                System.out.println("Compute IMC");
+                // by default System.out.println is at the INFO level
+                Log.d(TAG,"Computing IMC");
+                // VERBOSE, DEBUG, INFO, XAR?ERROR, ASSERT
+                Log.i(TAG, "Computing IMC");
 
                 try {
                     weight = Float.parseFloat(mWeightInput.getText().toString());
@@ -74,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                 float imc = weight / (size * size);
 
-                mResult.setText("IMC = " + new DecimalFormat("#.##").format(imc));
+                mResult.setText(getString(R.string.IMC, imc));
 
             }
         });
@@ -83,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // The user just clicked
-                System.out.println("Clear data");
+                Log.d(TAG, "Clear data");
                 mSizeInput.setText("");
                 mWeightInput.setText("");
                 mResult.setText("");
@@ -95,12 +102,13 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Small warning for input errors
-     * @param msg
+     * @param msg the string to display
      */
     void warningPopup(final String msg) {
 
-        // Toast.makeText(getApplicationContext(), "Poid incorrect", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 
+        /*
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast,
                 (ViewGroup) findViewById(custom_toast_container));
@@ -113,6 +121,6 @@ public class MainActivity extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
-
+        */
     }
 }

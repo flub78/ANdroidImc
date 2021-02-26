@@ -2,6 +2,7 @@ package flub78.org.imc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,6 +83,23 @@ public class MainActivity extends AppCompatActivity {
                 float imc = weight / (size * size);
 
                 mResult.setText(getString(R.string.IMC, imc));
+                Resources res = getResources();
+
+                if (imc < 16) {
+                    mResult.setTextColor(res.getColor(R.color.anorexy));
+                } else if (imc < 18.5) {
+                    mResult.setTextColor(res.getColor(R.color.leanness));
+                } else if (imc < 25) {
+                    mResult.setTextColor(res.getColor(R.color.normal));
+                } else if (imc < 30) {
+                    mResult.setTextColor(res.getColor(R.color.overweigth));
+                } else if (imc < 35) {
+                    mResult.setTextColor(res.getColor(R.color.moderate_obesity));
+                } else if (imc < 40) {
+                    mResult.setTextColor(res.getColor(R.color.severe_obesity));
+                } else {
+                    mResult.setTextColor(res.getColor(R.color.morbid_obesity));
+                }
 
             }
         });

@@ -4,23 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ImcActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/scale_bmi" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="15"
             android:text="@string/poids"
             android:textSize="14sp" />
 
         <EditText
             android:id="@+id/activity_main_weight_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="85"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:ems="10"
@@ -34,16 +43,18 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="15"
             android:text="@string/taille"
             tools:layout_editor_absoluteX="96dp"
             tools:layout_editor_absoluteY="35dp" />
 
         <EditText
             android:id="@+id/activity_main_size_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="85"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:ems="10"
@@ -53,12 +64,12 @@
 
     <TextView
         android:id="@+id/activity_main_result_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:padding="30dp"
+        android:padding="15dp"
 
         android:text=""
         android:textSize="24sp"

@@ -8,4 +8,5 @@
     <string name="calculez_votre_imc">Compute your BMI</string>
     <string name="raz">Clear</string>
     <string name="IMC">BMI = %1$.2f</string>
+    <string name="scale">scale</string>
 </resources>

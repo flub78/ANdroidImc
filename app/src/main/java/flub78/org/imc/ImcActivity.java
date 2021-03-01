@@ -28,29 +28,29 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
 
         // by default System.out.println is at the INFO level
         // VERBOSE, DEBUG, INFO, XAR?ERROR, ASSERT
-        Log.i(TAG, "Computing IMC");
+        Log.i(TAG, getString(R.string.computing));
 
         try {
             weight = Float.parseFloat(mWeightInput.getText().toString());
         } catch (Exception e) {
-            warningPopup("Poids incorrect");
+            warningPopup(getString(R.string.wrong_weight));
             return;
         }
 
         try {
             size = Float.parseFloat(mSizeInput.getText().toString());
         } catch (Exception e) {
-            warningPopup("Taille incorrecte");
+            warningPopup(getString(R.string.wrong_size));
             return;
         }
 
         if ((size < 1.0) || (size > 2.2)) {
-            warningPopup("IMC non significatif pour cette taille");
+            warningPopup(getString(R.string.cannot_compute));
             return;
         }
 
         if ((weight < 40.0) || (weight > 200.2)) {
-            warningPopup("IMC non significatif pour ce poids");
+            warningPopup(getString(R.string.cannot_compute));
             return;
         }
 
@@ -82,13 +82,13 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        Log.println(Log.INFO, "MainActivity", "main activity creation");
-        Log.v("MainActivity", "verbose level is blue");
-        Log.d("MainActivity", "debug level is green");
-        Log.i("MainActivity", "info level is white");
-        Log.w("MainActivity", "Warning level is yellow");
-        Log.e("MainActivity", "Error level is red");
-        Log.wtf("MainActivity", "What the f...? level is red");
+        Log.println(Log.INFO, "MainActivity", getString(R.string.create_main));
+        Log.v("MainActivity", getString(R.string.verbose_log_example));
+        Log.d("MainActivity", getString(R.string.debug_log_example));
+        Log.i("MainActivity", getString(R.string.info_log_example));
+        Log.w("MainActivity", getString(R.string.warning_log_example));
+        Log.e("MainActivity", getString(R.string.error_log_example));
+        Log.wtf("MainActivity", getString(R.string.wtf_log_example));
 
 
         mResult = findViewById(R.id.activity_main_result_text);
@@ -106,7 +106,7 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
             @Override
             public void onClick(View v) {
                 // The user just clicked
-                Log.d(TAG, "Clear data");
+                Log.d(TAG, getString(R.string.clearing_data));
                 mSizeInput.setText("");
                 mWeightInput.setText("");
                 mResult.setText("");
@@ -143,12 +143,10 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_ENTER:
-                this.computeImc(v);
-                return true;
-            default:
-                return super.onKeyUp(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            this.computeImc(v);
+            return true;
         }
+        return super.onKeyUp(keyCode, event);
     }
 }

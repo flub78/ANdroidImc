@@ -1,6 +1,6 @@
 # AndroidImc
 
-OpenClassroom "Créez des applicationspour Android"
+OpenClassroom "Créez des applications pour Android"
 
 This app compute your body mass index (BMI) or IMC in French.
 
@@ -10,6 +10,7 @@ This app compute your body mass index (BMI) or IMC in French.
 - Fixed Lint warnings
 - Change BMI color depending on the range
 - Manage local en, fr
+- Compute BMI when the user hits "Enter"
 
 ## To do list
 
@@ -20,11 +21,8 @@ This app compute your body mass index (BMI) or IMC in French.
 
 - Change toast attributes
 - Include drawable images, icons in the toast messages, etc.
-- Still some string to localize in the Java code
 
 ### Improvements
-
-- Compute BMI when the user hits "Enter"
 
 ### Features
 - Store history

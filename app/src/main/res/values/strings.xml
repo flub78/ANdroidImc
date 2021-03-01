@@ -7,4 +7,17 @@
     <string name="raz">RAZ</string>
     <string name="poids">Poids :</string>
     <string name="IMC">IMC = %1$.2f</string>
+    <string name="scale">pése-personne</string>
+    <string name="computing">Computing IMC</string>
+    <string name="wrong_weight">Poids incorrect</string>
+    <string name="wrong_size">Taille incorrecte</string>
+    <string name="cannot_compute">IMC non significatif pour cette taille</string>
+    <string name="create_main">main activity creation</string>
+    <string name="verbose_log_example">verbose level is blue</string>
+    <string name="debug_log_example">debug level is green</string>
+    <string name="info_log_example">info level is white</string>
+    <string name="warning_log_example">Warning level is yellow</string>
+    <string name="error_log_example">Error level is red</string>
+    <string name="wtf_log_example">What the f...? level is red</string>
+    <string name="clearing_data">Clearing data</string>
 </resources>

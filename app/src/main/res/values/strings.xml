@@ -20,4 +20,8 @@
     <string name="error_log_example">Error level is red</string>
     <string name="wtf_log_example">What the f...? level is red</string>
     <string name="clearing_data">Clearing data</string>
+    <string name="date">Date :</string>
+    <string name="date_hint">Date</string>
+    <string name="comment">Commenaire :</string>
+    <string name="comment_hint">Commentaire</string>
 </resources>

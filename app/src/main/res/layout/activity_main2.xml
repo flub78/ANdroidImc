@@ -6,6 +6,7 @@
     android:orientation="vertical"
     tools:context=".ImcActivity">
 
+    <!-- First a picture -->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,6 +14,7 @@
         android:src="@drawable/scale_bmi"
         android:contentDescription="@string/scale" />
 
+    <!-- Weight input -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +24,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="15"
+            android:layout_weight="25"
             android:text="@string/poids"
             android:textSize="14sp" />
 
@@ -30,7 +32,7 @@
             android:id="@+id/activity_main_weight_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="85"
+            android:layout_weight="80"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:ems="10"
@@ -38,6 +40,7 @@
             android:inputType="numberDecimal" />
     </LinearLayout>
 
+    <!-- Size input -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +49,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="15"
+            android:layout_weight="25"
             android:text="@string/taille"
             tools:layout_editor_absoluteX="96dp"
             tools:layout_editor_absoluteY="35dp" />
@@ -55,7 +58,7 @@
             android:id="@+id/activity_main_size_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="85"
+            android:layout_weight="80"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:ems="10"
@@ -63,6 +66,57 @@
             android:inputType="numberDecimal" />
     </LinearLayout>
 
+    <!-- Date input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="25"
+            android:text="@string/date"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/activity_main_date_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/date_hint"
+            android:inputType="date" />
+    </LinearLayout>
+
+    <!-- Comment input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="25"
+            android:text="@string/comment"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/activity_main_comment_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/comment_hint"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!-- Result -->
     <TextView
         android:id="@+id/activity_main_result_text"
         android:layout_width="match_parent"
@@ -78,6 +132,7 @@
         tools:layout_editor_absoluteX="96dp"
         tools:layout_editor_absoluteY="35dp" />
 
+    <!-- BMI button -->
     <Button
         android:id="@+id/activity_main_compute_button"
         android:layout_width="match_parent"
@@ -86,6 +141,7 @@
         android:layout_marginEnd="16dp"
         android:text="@string/calculez_votre_imc" />
 
+    <!-- Clear button -->
     <Button
         android:id="@+id/activity_main_clear_button"
         android:layout_width="match_parent"
@@ -94,4 +150,12 @@
         android:layout_marginEnd="16dp"
         android:text="@string/raz" />
 
+    <!-- Store button -->
+    <Button
+        android:id="@+id/activity_main_store_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/raz" />
 </LinearLayout>

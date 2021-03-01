@@ -23,6 +23,8 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
     public void computeImc(View v)  {
         // The user just clicked
 
+        KeyBoard.hide(this);
+
         float size;
         float weight;
 

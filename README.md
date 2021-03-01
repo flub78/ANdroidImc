@@ -21,6 +21,7 @@ This app compute your body mass index (BMI) or IMC in French.
 
 - Change toast attributes
 - Include drawable images, icons in the toast messages, etc.
+- Make the main activity scrollable
 
 ### Improvements
 

@@ -9,4 +9,21 @@
     <string name="raz">Clear</string>
     <string name="IMC">BMI = %1$.2f</string>
     <string name="scale">scale</string>
+    <string name="computing">Computing BMI</string>
+    <string name="wrong_weight">Invalid weight</string>
+    <string name="wrong_size">Invalid size</string>
+    <string name="cannot_compute">BMI is not significant for this size</string>
+    <string name="create_main">Main activity creation</string>
+    <string name="verbose_log_example">verbose level is blue</string>
+    <string name="debug_log_example">debug level is green</string>
+    <string name="info_log_example">info level is white</string>
+    <string name="warning_log_example">Warning level is yellow</string>
+    <string name="error_log_example">Error level is red</string>
+    <string name="wtf_log_example">What the f...? level is red</string>
+    <string name="clearing_data">Clearing data</string>
+    <string name="date">Date :</string>
+    <string name="date_hint">Date</string>
+    <string name="comment">Comment :</string>
+    <string name="comment_hint">Comment</string>
+    <string name="store">Record</string>
 </resources>

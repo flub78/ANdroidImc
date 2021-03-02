@@ -20,7 +20,8 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/entrez_votre_poids_en_kg"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:autofillHints="" />
 
     <TextView
         android:layout_width="match_parent"
@@ -37,7 +38,8 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/entrez_votre_taille_en_m"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/activity_main_result_text"

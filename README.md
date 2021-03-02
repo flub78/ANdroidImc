@@ -11,6 +11,8 @@ This app compute your body mass index (BMI) or IMC in French.
 - Change BMI color depending on the range
 - Manage local en, fr
 - Compute BMI when the user hits "Enter"
+- Scrollable main activity
+- Uses a datePicker
 
 ## To do list
 
@@ -21,7 +23,6 @@ This app compute your body mass index (BMI) or IMC in French.
 
 - Change toast attributes
 - Include drawable images, icons in the toast messages, etc.
-- Make the main activity scrollable
 
 ### Improvements
 

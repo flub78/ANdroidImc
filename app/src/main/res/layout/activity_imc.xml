@@ -34,7 +34,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/activity_main_weight_input"
+            android:id="@+id/activity_imc_weight_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="80"
@@ -60,7 +60,7 @@
             tools:layout_editor_absoluteY="35dp" />
 
         <EditText
-            android:id="@+id/activity_main_size_input"
+            android:id="@+id/activity_imc_size_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="80"
@@ -85,7 +85,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/activity_main_date_input"
+            android:id="@+id/activity_imc_date_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="80"
@@ -110,7 +110,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/activity_main_comment_input"
+            android:id="@+id/activity_imc_comment_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="80"
@@ -123,7 +123,7 @@
 
     <!-- Result -->
     <TextView
-        android:id="@+id/activity_main_result_text"
+        android:id="@+id/activity_imc_result_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -139,7 +139,7 @@
 
     <!-- BMI button -->
     <Button
-        android:id="@+id/activity_main_compute_button"
+        android:id="@+id/activity_imc_compute_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -148,7 +148,7 @@
 
     <!-- Clear button -->
     <Button
-        android:id="@+id/activity_main_clear_button"
+        android:id="@+id/activity_imc_clear_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -157,7 +157,7 @@
 
     <!-- Store button -->
     <Button
-        android:id="@+id/activity_main_store_button"
+        android:id="@+id/activity_imc_store_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

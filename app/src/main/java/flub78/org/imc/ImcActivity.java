@@ -2,21 +2,30 @@ package flub78.org.imc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class ImcActivity extends AppCompatActivity implements View.OnKeyListener {
 
     private TextView mResult;
     private EditText mSizeInput;
     private EditText mWeightInput;
+    private EditText mDateInput;
+    private DatePickerDialog mPicker;
 
     private static final String TAG = "MainActivity";
 
@@ -82,7 +91,7 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_imc);
 
         Log.println(Log.INFO, "MainActivity", getString(R.string.create_main));
         Log.v("MainActivity", getString(R.string.verbose_log_example));
@@ -93,16 +102,42 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
         Log.wtf("MainActivity", getString(R.string.wtf_log_example));
 
 
-        mResult = findViewById(R.id.activity_main_result_text);
-        mSizeInput = findViewById(R.id.activity_main_size_input);
-        mWeightInput = findViewById(R.id.activity_main_weight_input);
+        mResult = findViewById(R.id.activity_imc_result_text);
+        mSizeInput = findViewById(R.id.activity_imc_size_input);
+        mWeightInput = findViewById(R.id.activity_imc_weight_input);
+        mDateInput = findViewById(R.id.activity_imc_date_input);
 
-        Button computeButton = findViewById(R.id.activity_main_compute_button);
-        Button clearButton = findViewById(R.id.activity_main_clear_button);
+        Button computeButton = findViewById(R.id.activity_imc_compute_button);
+        Button clearButton = findViewById(R.id.activity_imc_clear_button);
 
         mSizeInput.setOnKeyListener(this);
         mWeightInput.setOnKeyListener(this);
         computeButton.setOnClickListener(this::computeImc);
+
+        String date_n = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        mDateInput.setText(date_n);
+
+        mDateInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, getString(R.string.date_clicked));
+
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                mPicker = new DatePickerDialog(ImcActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                mDateInput.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                mPicker.show();
+
+            }
+        });
 
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override

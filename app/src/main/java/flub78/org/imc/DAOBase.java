@@ -2,6 +2,7 @@ package flub78.org.imc;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * Created by flub78 on 2021_03-03.
@@ -13,24 +14,33 @@ public abstract class DAOBase {
     // Le nom du fichier qui représente ma base
     protected final static String NAME = "database.db";
 
+    private final String TAG = "DAOBase";
+
     protected SQLiteDatabase mDb = null;
     protected DatabaseHandler mHandler = null;
 
     public DAOBase(Context pContext) {
-        this.mHandler = new DatabaseHandler(pContext, NAME, null, VERSION);
+        Log.i(TAG, "constructor");
+
+        mHandler = new DatabaseHandler(pContext, NAME, null, VERSION);
     }
 
     public SQLiteDatabase open() {
+
+        Log.i(TAG, "open");
+
         // Pas besoin de fermer la dernière base puisque getWritableDatabase s'en charge
         mDb = mHandler.getWritableDatabase();
         return mDb;
     }
 
     public void close() {
+        Log.i(TAG, "close");
         mDb.close();
     }
 
     public SQLiteDatabase getDb() {
+        Log.i(TAG, "getDB");
         return mDb;
     }
 }

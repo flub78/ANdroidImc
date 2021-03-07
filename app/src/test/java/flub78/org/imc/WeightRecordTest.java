@@ -15,7 +15,7 @@ public class WeightRecordTest {
 
     @Before
     public void setUp() throws Exception {
-        mWR = new WeightRecord(42, 97.0f, 1.79f, "Me", "28/02/2021", "No comments");
+        mWR = new WeightRecord(42, "Me", 97.0f, 1.79f,  "28/02/2021", "No comments");
     }
 
     @After

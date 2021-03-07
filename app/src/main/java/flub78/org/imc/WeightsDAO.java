@@ -3,6 +3,7 @@ package flub78.org.imc;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -32,7 +33,17 @@ public class WeightsDAO extends DAOBase {
      * @return the number of element in the table
      */
     public int count() {
-        return 0;
+        Log.i(TAG, "count ... " );
+
+        String countQuery = "SELECT  * FROM " + TABLE_NAME;
+        Cursor cursor = mDb.rawQuery(countQuery, null);
+
+        int count = cursor.getCount();
+
+        cursor.close();
+
+        // return count
+        return count;
     }
 
     /**
@@ -56,7 +67,7 @@ public class WeightsDAO extends DAOBase {
      * @param id to delete
      */
     public void delete(long id) {
-        Log.d(TAG, "delete");
+        Log.d(TAG, "delete " + id);
         mDb.delete(TABLE_NAME, KEY_ID + " = ?",
                 new String[]{String.valueOf(id)});
     }
@@ -91,16 +102,16 @@ public class WeightsDAO extends DAOBase {
         if (cursor.moveToFirst()) {
             do {
                 // Adding to the list
-                WeightRecord note = new WeightRecord(
+                 WeightRecord w = new WeightRecord(
                         Integer.parseInt(cursor.getString(0)),
-                        Float.parseFloat(cursor.getString(1)),
-                        Float.parseFloat(cursor.getString(2)),
-                        cursor.getString(3),
+                        cursor.getString(1),
+                        cursor.getFloat(2),
+                        cursor.getFloat(3),
                         cursor.getString(4),
                         cursor.getString(5)
                 );
 
-                weightList.add(note);
+                weightList.add(w);
             } while (cursor.moveToNext());
         }
 
@@ -113,18 +124,23 @@ public class WeightsDAO extends DAOBase {
      */
     public WeightRecord select(long id) {
 
-        Log.d(TAG, "select");
-        /**
-         Cursor c = mDb.rawQuery("select " +
-         INTITULE + " from " + TABLE_NAME + " where salaire > ?", new String[]{"1"});
+        Log.d(TAG, "select " + id);
 
-         // CODE
-         while (c.moveToNext()) {
-         // Faire quelque chose
-         }
-         c.close();
-         */
-        return null;
+        Cursor cursor = mDb.query(TABLE_NAME, new String[] { KEY_ID,
+                        USER, WEIGHT, SIZE, DATE, COMMENT}, KEY_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        WeightRecord w = new WeightRecord(
+                Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1),
+                cursor.getFloat(2),
+                cursor.getFloat(3),
+                cursor.getString(4),
+                cursor.getString(5)
+        );
+        return w;
     }
 }
 

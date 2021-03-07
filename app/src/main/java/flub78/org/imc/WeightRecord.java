@@ -18,7 +18,7 @@ public class WeightRecord {
         super();
     }
 
-    public WeightRecord(long id, float weight, float size, String user, String date, String comment) {
+    public WeightRecord(long id, String user, float weight, float size, String date, String comment) {
         super();
         this.mId = id;
         this.mWeight = weight;
@@ -74,5 +74,14 @@ public class WeightRecord {
 
     public void setComment(String comment) {
         mComment = comment;
+    }
+
+    public String toString () {
+        return "WeightRecord: id=" + mId +
+                ", user=" + mUser +
+                ", weight=" + mWeight +
+                ", size=" + mSize +
+                ", date=" + mDate +
+                ", comment=" + mComment;
     }
 }

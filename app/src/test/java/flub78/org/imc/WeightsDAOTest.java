@@ -35,7 +35,7 @@ public class WeightsDAOTest extends TestCase {
         super.setUp();
 
         // uncomment to see the logs on stdout
-        ShadowLog.stream = System.out;
+        // ShadowLog.stream = System.out;
 
         Log.i(TAG, "setup (((");
         Application myapp = RuntimeEnvironment.application;
@@ -179,8 +179,8 @@ public class WeightsDAOTest extends TestCase {
 
         assertEquals(2, l.size());
 
-        System.out.println(l.get(0));
-        System.out.println(l.get(1));
+        Log.d(TAG, l.get(0).toString());
+        Log.d(TAG, l.get(1).toString());
 
         dao.close();
     }

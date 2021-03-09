@@ -1,8 +1,10 @@
-package flub78.org.imc;
+package flub78.org.imc.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +21,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import flub78.org.imc.helper.KeyBoard;
+import flub78.org.imc.R;
+
+import static flub78.org.imc.Shared.PREF_KEY_USER_NAME;
+
 public class ImcActivity extends AppCompatActivity implements View.OnKeyListener {
 
+    private SharedPreferences mPreferences;
+
+    private TextView mName;
     private TextView mResult;
     private EditText mSizeInput;
     private EditText mWeightInput;
@@ -101,11 +111,19 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
         Log.e("MainActivity", getString(R.string.error_log_example));
         Log.wtf("MainActivity", getString(R.string.wtf_log_example));
 
-
         mResult = findViewById(R.id.activity_imc_result_text);
         mSizeInput = findViewById(R.id.activity_imc_size_input);
         mWeightInput = findViewById(R.id.activity_imc_weight_input);
         mDateInput = findViewById(R.id.activity_imc_date_input);
+        mName = findViewById(R.id.activity_imc_name);
+
+        // On récupère l'intent qui a lancé cette activité
+        Intent i = getIntent();
+
+        String name = i.getStringExtra(PREF_KEY_USER_NAME);
+        if (null != name) {
+            mName.setText(name);
+        }
 
         Button computeButton = findViewById(R.id.activity_imc_compute_button);
         Button clearButton = findViewById(R.id.activity_imc_clear_button);

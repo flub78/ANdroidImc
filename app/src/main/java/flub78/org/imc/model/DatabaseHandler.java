@@ -1,4 +1,4 @@
-package flub78.org.imc;
+package flub78.org.imc.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

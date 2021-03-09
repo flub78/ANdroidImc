@@ -1,4 +1,4 @@
-package flub78.org.imc;
+package flub78.org.imc.model;
 
 /**
  * Created by flub78 on 2021-03-03.

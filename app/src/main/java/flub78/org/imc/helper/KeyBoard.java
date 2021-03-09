@@ -1,4 +1,4 @@
-package flub78.org.imc;
+package flub78.org.imc.helper;
 
 import android.app.Activity;
 import android.view.inputmethod.InputMethodManager;

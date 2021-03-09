@@ -12,11 +12,11 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-import org.robolectric.shadows.ShadowLog;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import flub78.org.imc.model.WeightRecord;
+import flub78.org.imc.model.WeightsDAO;
 
 /**
  * Created by <VOTRE-NOM> on <DATE-DU-JOUR>.
@@ -44,7 +44,7 @@ public class WeightsDAOTest extends TestCase {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         Log.i(TAG, "))) teardown");
         dao.close();
     }

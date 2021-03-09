@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import flub78.org.imc.model.WeightRecord;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,12 +16,12 @@ public class WeightRecordTest {
     WeightRecord mWR;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         mWR = new WeightRecord(42, "Me", 97.0f, 1.79f,  "28/02/2021", "No comments");
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         mWR = null;
     }
 

@@ -1,13 +1,15 @@
-package flub78.org.imc;
+package flub78.org.imc.model;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import flub78.org.imc.model.DAOBase;
+import flub78.org.imc.model.WeightRecord;
 
 /**
  * Created by flub78 on 2021-03-03.
@@ -92,7 +94,7 @@ public class WeightsDAO extends DAOBase {
     public List<WeightRecord> getAll() {
         Log.i(TAG, "getAll ... ");
 
-        List<WeightRecord> weightList = new ArrayList<WeightRecord>();
+        List<WeightRecord> weightList = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_NAME;
 
@@ -114,6 +116,8 @@ public class WeightsDAO extends DAOBase {
                 weightList.add(w);
             } while (cursor.moveToNext());
         }
+
+        cursor.close();
 
         // return the list
         return weightList;
@@ -140,6 +144,7 @@ public class WeightsDAO extends DAOBase {
                 cursor.getString(4),
                 cursor.getString(5)
         );
+        cursor.close();
         return w;
     }
 }

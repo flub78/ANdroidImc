@@ -1,4 +1,4 @@
-package flub78.org.imc;
+package flub78.org.imc.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +17,7 @@ public abstract class DAOBase {
     private final String TAG = "DAOBase";
 
     protected SQLiteDatabase mDb = null;
-    protected DatabaseHandler mHandler = null;
+    protected DatabaseHandler mHandler;
 
     public DAOBase(Context pContext) {
         Log.i(TAG, "constructor");

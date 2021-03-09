@@ -1,13 +1,8 @@
 package flub78.org.imc;
 
-import android.app.Activity;
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
-
-import flub78.org.imc.ImcActivity;
 
 /**
  * Created by <VOTRE-NOM> on <DATE-DU-JOUR>.

@@ -26,4 +26,6 @@
     <string name="comment">Comment :</string>
     <string name="comment_hint">Comment</string>
     <string name="store">Record</string>
+    <string name="signature_title">Your signature</string>
+    <string name="sync_title">Sync email periodically</string>
 </resources>

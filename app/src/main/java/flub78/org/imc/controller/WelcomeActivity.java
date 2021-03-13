@@ -20,7 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private EditText mNameInput;
     private Button mButton;
-    private User mUser = new User();
+    private final User mUser = new User();
 
     private SharedPreferences mPreferences;
 
@@ -31,7 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         mPreferences = getPreferences(MODE_PRIVATE);
 
-        mNameInput = (EditText) findViewById(R.id.activity_welcome_name_input);
+        mNameInput = findViewById(R.id.activity_welcome_name_input);
         mButton = findViewById(R.id.login);
 
         String name = mPreferences.getString(PREF_KEY_USER_NAME, null);

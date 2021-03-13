@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ImcActivity">
+    tools:context=".controller.ImcActivity">
+
+    <TextView
+        android:id="@+id/activity_imc_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_weight="25"
+        android:text="@string/turlututu"
+        android:textSize="14sp" />
+
 
     <!-- First a picture -->
     <ImageView
@@ -29,6 +38,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="25"
             android:text="@string/poids"
             android:textSize="14sp" />
@@ -37,9 +47,8 @@
             android:id="@+id/activity_imc_weight_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="80"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/entrez_votre_poids_en_kg"
             android:inputType="numberDecimal" />
@@ -54,6 +63,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="25"
             android:text="@string/taille"
             tools:layout_editor_absoluteX="96dp"
@@ -63,9 +73,8 @@
             android:id="@+id/activity_imc_size_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="80"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/entrez_votre_taille_en_m"
             android:inputType="numberDecimal" />
@@ -75,6 +84,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="horizontal">
 
         <TextView
@@ -88,9 +98,8 @@
             android:id="@+id/activity_imc_date_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="80"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/date_hint"
             android:inputType="date" />
@@ -105,6 +114,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="25"
             android:text="@string/comment"
             android:textSize="14sp" />
@@ -113,9 +123,8 @@
             android:id="@+id/activity_imc_comment_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="80"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/comment_hint"
             android:inputType="text" />
@@ -127,10 +136,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:padding="15dp"
+        android:layout_margin="8dp"
 
+        android:padding="15dp"
         android:text=""
         android:textSize="24sp"
         android:textStyle="bold"

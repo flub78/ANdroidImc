@@ -12,6 +12,7 @@ package flub78.org.imc;
  * TODO Weight records list activity
  * TODO add a location to weight records
  * TODO add a picture to weight records
+ * TODO PreferencesActivity
  */
 public class Shared {
 

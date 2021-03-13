@@ -9,6 +9,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -38,6 +40,9 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
     private DatePickerDialog mPicker;
 
     private static final String TAG = "MainActivity";
+
+    private Menu m = null;
+
 
     public void computeImc(View v)  {
         // The user just clicked
@@ -170,6 +175,15 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        //R.menu.menu est l'id de notre menu
+        inflater.inflate(R.menu.main_menu, menu);
+        m = menu;
+        return true;
+    }
 
     /**
      * Small warning for input errors

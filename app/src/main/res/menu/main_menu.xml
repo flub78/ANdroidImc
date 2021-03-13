@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/item1" android:title="Item 1"></item>
-    <item android:id="@+id/item2" android:titleCondensed="Item 2" android:title="Item 2 mais avec un nom assez long quand même">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item1"
+        android:onClick="menu_item_1_click"
+        android:title="Item 1"
+        app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/item2"
+        android:onClick="menu_item_2_click"
+        android:title="Item 2 mais avec un nom assez long quand même"
+        android:titleCondensed="Item 2">
         <menu>
-            <item android:id="@+id/item3" android:title="Item 2.1" android:checkable="true"/>
-            <item android:id="@+id/item4" android:title="Item 2.2"/>
+            <item
+                android:id="@+id/item3"
+                android:checkable="true"
+                android:title="Item 2.1" />
+            <item
+                android:id="@+id/item4"
+                android:title="Item 2.2" />
         </menu>
     </item>
     <item android:id="@+id/item5" android:title="Item 3" android:checkable="true"/>

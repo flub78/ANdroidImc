@@ -1,6 +1,7 @@
 package flub78.org.imc.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -28,7 +29,7 @@ import flub78.org.imc.R;
 
 import static flub78.org.imc.Shared.PREF_KEY_USER_NAME;
 
-public class ImcActivity extends AppCompatActivity implements View.OnKeyListener {
+public class ImcActivity extends MenuActivity implements View.OnKeyListener {
 
     private SharedPreferences mPreferences;
 
@@ -39,48 +40,57 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
     private EditText mDateInput;
     private DatePickerDialog mPicker;
 
+    private float mCurrentSize;
+    private float mCurrentWeight;
+
     private static final String TAG = "MainActivity";
 
-    private Menu m = null;
+    /**
+     * @return false if it is not possible to compute a BMI
+     */
+    private boolean wrongInput () {
 
+        Log.d(TAG, "wrongInput");
+
+        try {
+            mCurrentWeight = Float.parseFloat(mWeightInput.getText().toString());
+        } catch (Exception e) {
+            warningPopup(getString(R.string.wrong_weight));
+            return true;
+        }
+
+        try {
+            mCurrentSize = Float.parseFloat(mSizeInput.getText().toString());
+        } catch (Exception e) {
+            warningPopup(getString(R.string.wrong_size));
+            return true;
+        }
+
+        if ((mCurrentSize < 1.0) || (mCurrentSize > 2.2)) {
+            warningPopup(getString(R.string.cannot_compute));
+            return true;
+        }
+
+        if ((mCurrentWeight < 40.0) || (mCurrentWeight > 200.2)) {
+            warningPopup(getString(R.string.cannot_compute));
+            return true;
+        }
+        return false;
+    }
 
     public void computeImc(View v)  {
         // The user just clicked
 
         KeyBoard.hide(this);
 
-        float size;
-        float weight;
 
         // by default System.out.println is at the INFO level
         // VERBOSE, DEBUG, INFO, XAR?ERROR, ASSERT
         Log.i(TAG, getString(R.string.computing));
 
-        try {
-            weight = Float.parseFloat(mWeightInput.getText().toString());
-        } catch (Exception e) {
-            warningPopup(getString(R.string.wrong_weight));
-            return;
-        }
+        if (this.wrongInput()) return;
 
-        try {
-            size = Float.parseFloat(mSizeInput.getText().toString());
-        } catch (Exception e) {
-            warningPopup(getString(R.string.wrong_size));
-            return;
-        }
-
-        if ((size < 1.0) || (size > 2.2)) {
-            warningPopup(getString(R.string.cannot_compute));
-            return;
-        }
-
-        if ((weight < 40.0) || (weight > 200.2)) {
-            warningPopup(getString(R.string.cannot_compute));
-            return;
-        }
-
-        float imc = weight / (size * size);
+        float imc = mCurrentWeight / (mCurrentSize * mCurrentSize);
 
         mResult.setText(getString(R.string.IMC, imc));
         Resources res = getResources();
@@ -100,13 +110,16 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
         } else {
             mResult.setTextColor(res.getColor(R.color.morbid_obesity));
         }
-
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+        // the content view must be set before toolbar activation in the parent method
         setContentView(R.layout.activity_constraint_layout_imc);
+
+        super.onCreate(savedInstanceState);
+
 
         Log.println(Log.INFO, "MainActivity", getString(R.string.create_main));
         Log.v("MainActivity", getString(R.string.verbose_log_example));
@@ -172,18 +185,8 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
                 mResult.setText("");
             }
         });
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        //R.menu.menu est l'id de notre menu
-        inflater.inflate(R.menu.main_menu, menu);
-        m = menu;
-        return true;
-    }
 
     /**
      * Small warning for input errors
@@ -218,4 +221,15 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
         }
         return super.onKeyUp(keyCode, event);
     }
+
+    /**
+     * on button store clicked
+     * @param view
+     */
+    public void storeRecord(View view) {
+        Log.d(TAG, "storeRecord");
+
+        if (wrongInput()) return;
+    }
+
 }

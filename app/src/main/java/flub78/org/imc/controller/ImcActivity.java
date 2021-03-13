@@ -106,7 +106,7 @@ public class ImcActivity extends AppCompatActivity implements View.OnKeyListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_imc);
+        setContentView(R.layout.activity_constraint_layout_imc);
 
         Log.println(Log.INFO, "MainActivity", getString(R.string.create_main));
         Log.v("MainActivity", getString(R.string.verbose_log_example));

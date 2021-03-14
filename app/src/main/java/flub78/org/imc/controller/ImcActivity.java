@@ -26,9 +26,15 @@ import java.util.Locale;
 
 import flub78.org.imc.helper.KeyBoard;
 import flub78.org.imc.R;
+import flub78.org.imc.model.WeightsDAO;
 
 import static flub78.org.imc.Shared.PREF_KEY_USER_NAME;
 
+/**
+ * Activitiy to compute IMC and save a new record
+ *
+ * TODO: replace deprecated SimpleDateFormat. https://www.baeldung.com/migrating-to-java-8-date-time-api
+ */
 public class ImcActivity extends MenuActivity implements View.OnKeyListener {
 
     private SharedPreferences mPreferences;
@@ -38,6 +44,7 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
     private EditText mSizeInput;
     private EditText mWeightInput;
     private EditText mDateInput;
+    private EditText mCommentInput;
     private DatePickerDialog mPicker;
 
     private float mCurrentSize;
@@ -46,6 +53,8 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
     private static final String TAG = "MainActivity";
 
     /**
+     * Extract the data from the IMC activity form and check that
+     * it is possible to compute a BMI. Return false and display warning when not.
      * @return false if it is not possible to compute a BMI
      */
     private boolean wrongInput () {
@@ -78,6 +87,10 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
         return false;
     }
 
+    /**
+     * Compute BMI from data in the form
+     * @param v
+     */
     public void computeImc(View v)  {
         // The user just clicked
 
@@ -112,6 +125,10 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
         }
     }
 
+    /**
+     * Inherited from activity, initializes the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -134,10 +151,12 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
         mWeightInput = findViewById(R.id.activity_imc_weight_input);
         mDateInput = findViewById(R.id.activity_imc_date_input);
         mName = findViewById(R.id.activity_imc_name);
+        mCommentInput = findViewById(R.id.activity_imc_comment_input);
 
         // On récupère l'intent qui a lancé cette activité
         Intent i = getIntent();
 
+        // get the user name and display it
         String name = i.getStringExtra(PREF_KEY_USER_NAME);
         if (null != name) {
             mName.setText(name);
@@ -150,7 +169,8 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
         mWeightInput.setOnKeyListener(this);
         computeButton.setOnClickListener(this::computeImc);
 
-        String date_n = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+        String date_n = new SimpleDateFormat(getString(R.string.date_format), Locale.getDefault()).format(new Date());
         mDateInput.setText(date_n);
 
         mDateInput.setOnClickListener(new View.OnClickListener() {
@@ -158,16 +178,22 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
             public void onClick(View v) {
                 Log.d(TAG, getString(R.string.date_clicked));
 
+                // get the current date
                 final Calendar cldr = Calendar.getInstance();
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
-                // date picker dialog
+
+                // create a date picker dialog
                 mPicker = new DatePickerDialog(ImcActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                mDateInput.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+
+                                Log.e(TAG, "dayOfMonth=" + dayOfMonth + ", monthOfYear=" + monthOfYear + ", year=" + year);
+                                String date_n = new SimpleDateFormat(getString(R.string.date_format),
+                                        Locale.getDefault()).format(new Date(year - 1900, monthOfYear, dayOfMonth));
+                                mDateInput.setText(date_n);
                             }
                         }, year, month, day);
                 mPicker.show();
@@ -195,23 +221,15 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
     void warningPopup(final String msg) {
 
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-
-        /*
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.custom_toast,
-                (ViewGroup) findViewById(custom_toast_container));
-
-        TextView text = (TextView) layout.findViewById(R.id.text);
-        text.setText(msg);
-
-        Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setView(layout);
-        toast.show();
-        */
     }
 
+    /**
+     * Compute BMI when Enter is pressed
+     * @param v
+     * @param keyCode
+     * @param event
+     * @return
+     */
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
 
@@ -230,6 +248,23 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
         Log.d(TAG, "storeRecord");
 
         if (wrongInput()) return;
+
+        WeightsDAO dao = new WeightsDAO(this);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+
+        String strDate = mDateInput.getText().toString();
+        String comment = mCommentInput.getText().toString();
+
+        // The date picker already controls the date format
+        Log.e(TAG, "date = " + strDate);
+
+        // Generally it is a good rule of thumb to store dates in the persistent layer
+        // in UTC to avoid subtle bugs. However for a codelab, as the use case saving with
+        // a local and retreiving with another is unlikely, it is good enough.
+         // TODO: refactor to save dates in UTC (mainly as an exercise)
+
     }
 
 }

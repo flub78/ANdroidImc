@@ -19,7 +19,7 @@ import flub78.org.imc.model.WeightRecord;
 import flub78.org.imc.model.WeightsDAO;
 
 /**
- * Created by <VOTRE-NOM> on <DATE-DU-JOUR>.
+ * Created by flub78 on 2021-03.
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = {Config.OLDEST_SDK})

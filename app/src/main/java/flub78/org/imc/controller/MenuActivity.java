@@ -36,8 +36,18 @@ public class MenuActivity extends AppCompatActivity  {
     }
 
     public void menu_item_2_click(MenuItem item) {
+        Log.d(TAG, "menu_item_2_click");
     }
 
     public void menu_item_1_click(MenuItem item) {
+        Log.d(TAG, "menu_item_1_click");
+    }
+
+    public void menu_logout_click(MenuItem item) {
+        Log.d(TAG, "menu_logout_click");
+
+        // probably OK as long as there are only two activities
+        // it should likely be refactored it the menu navigates through several activities
+        finish();
     }
 }

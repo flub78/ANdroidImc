@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -26,6 +27,7 @@ import java.util.Locale;
 
 import flub78.org.imc.helper.KeyBoard;
 import flub78.org.imc.R;
+import flub78.org.imc.model.WeightRecord;
 import flub78.org.imc.model.WeightsDAO;
 
 import static flub78.org.imc.Shared.PREF_KEY_USER_NAME;
@@ -96,7 +98,6 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
 
         KeyBoard.hide(this);
 
-
         // by default System.out.println is at the INFO level
         // VERBOSE, DEBUG, INFO, XAR?ERROR, ASSERT
         Log.i(TAG, getString(R.string.computing));
@@ -136,7 +137,6 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
         setContentView(R.layout.activity_constraint_layout_imc);
 
         super.onCreate(savedInstanceState);
-
 
         Log.println(Log.INFO, "MainActivity", getString(R.string.create_main));
         Log.v("MainActivity", getString(R.string.verbose_log_example));
@@ -251,6 +251,8 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
 
         WeightsDAO dao = new WeightsDAO(this);
 
+        dao.open();
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(new Date());
 
@@ -263,8 +265,14 @@ public class ImcActivity extends MenuActivity implements View.OnKeyListener {
         // Generally it is a good rule of thumb to store dates in the persistent layer
         // in UTC to avoid subtle bugs. However for a codelab, as the use case saving with
         // a local and retreiving with another is unlikely, it is good enough.
-         // TODO: refactor to save dates in UTC (mainly as an exercise)
+        // TODO: refactor to save dates in UTC (mainly as an exercise)
 
+        Intent i = getIntent();
+        dao.create(mCurrentWeight, mCurrentSize, i.getStringExtra(PREF_KEY_USER_NAME),
+                strDate, comment);
+
+        dao.close();
+        this.warningPopup(getString(R.string.saved));
     }
 
 }

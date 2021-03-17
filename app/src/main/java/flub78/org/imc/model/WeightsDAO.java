@@ -51,18 +51,29 @@ public class WeightsDAO extends DAOBase {
     /**
      * @param w the record to add to the base
      */
+    public void create(float weight, float size, String user, String date, String comment) {
+
+        Log.d(TAG, "create (weight=" + weight + ", size=" + size +
+                ", user=" + user + ", date=" + date + ", comment=" + comment);
+
+        ContentValues value = new ContentValues();
+        value.put(WEIGHT, weight);
+        value.put(SIZE, size);
+        value.put(USER, user);
+        value.put(DATE, date);
+        value.put(COMMENT, comment);
+
+        mDb.insert(TABLE_NAME, null, value);
+    }
+
+    /**
+     * @param w the record to add to the base
+     */
     public void create(WeightRecord w) {
 
         Log.d(TAG, "create");
 
-        ContentValues value = new ContentValues();
-        value.put(WEIGHT, w.getWeight());
-        value.put(SIZE, w.getSize());
-        value.put(USER, w.getUser());
-        value.put(DATE, w.getDate());
-        value.put(COMMENT, w.getComment());
-
-        mDb.insert(TABLE_NAME, null, value);
+        this.create(w.getWeight(), w.getSize(), w.getUser(), w.getDate(), w.getComment());
     }
 
     /**

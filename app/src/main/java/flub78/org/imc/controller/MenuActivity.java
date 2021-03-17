@@ -1,5 +1,6 @@
 package flub78.org.imc.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import flub78.org.imc.ListActivity;
 import flub78.org.imc.R;
 
 public class MenuActivity extends AppCompatActivity  {
@@ -35,12 +37,12 @@ public class MenuActivity extends AppCompatActivity  {
         return true;
     }
 
-    public void menu_item_2_click(MenuItem item) {
-        Log.d(TAG, "menu_item_2_click");
-    }
+    public void menu_list_click(MenuItem item) {
+        Log.d(TAG, "menu_list_click");
 
-    public void menu_item_1_click(MenuItem item) {
-        Log.d(TAG, "menu_item_1_click");
+        Intent i = new Intent(this, ListActivity.class);
+
+        startActivity(i);
     }
 
     public void menu_logout_click(MenuItem item) {
